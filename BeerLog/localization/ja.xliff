@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="BeerLog/Base.lproj/LaunchScreen.storyboard" source-language="en" datatype="plaintext" target-language="ja">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="Fj9-bZ-NAy.text">
+        <source>    Beerlogue</source>
+        <target> Beerlogue</target>
+        <note>Class = "UILabel"; text = "    Beerlogue"; ObjectID = "Fj9-bZ-NAy";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BeerLog/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="ja">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="0lQ-K9-xu7.text">
+        <source>License Text</source>
+        <note>Class = "UILabel"; text = "License Text"; ObjectID = "0lQ-K9-xu7";</note>
+      </trans-unit>
+      <trans-unit id="2KH-qm-Ya5.title">
+        <source>Beer Log</source>
+        <note>Class = "UINavigationItem"; title = "Beer Log"; ObjectID = "2KH-qm-Ya5";</note>
+      </trans-unit>
+      <trans-unit id="4nh-zH-0Vw.placeholder">
+        <source>Add Location</source>
+        <note>Class = "UITextField"; placeholder = "Add Location"; ObjectID = "4nh-zH-0Vw";</note>
+      </trans-unit>
+      <trans-unit id="5Ly-aK-Hiq.text">
+        <source>ABV:</source>
+        <note>Class = "UILabel"; text = "ABV:"; ObjectID = "5Ly-aK-Hiq";</note>
+      </trans-unit>
+      <trans-unit id="5Yg-f9-uvK.title">
+        <source>Beer Bar nearby</source>
+        <note>Class = "UINavigationItem"; title = "Beer Bar nearby"; ObjectID = "5Yg-f9-uvK";</note>
+      </trans-unit>
+      <trans-unit id="63w-5e-QLq.text">
+        <source>Name</source>
+        <note>Class = "UILabel"; text = "Name"; ObjectID = "63w-5e-QLq";</note>
+      </trans-unit>
+      <trans-unit id="F23-Xe-dPr.title">
+        <source>Beer Nearby</source>
+        <note>Class = "UINavigationItem"; title = "Beer Nearby"; ObjectID = "F23-Xe-dPr";</note>
+      </trans-unit>
+      <trans-unit id="FFg-Op-dpi.text">
+        <source>Label</source>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "FFg-Op-dpi";</note>
+      </trans-unit>
+      <trans-unit id="Gmq-Yg-dLT.text">
+        <source>Distance</source>
+        <note>Class = "UILabel"; text = "Distance"; ObjectID = "Gmq-Yg-dLT";</note>
+      </trans-unit>
+      <trans-unit id="H8r-Kd-Ho8.text">
+        <source>Label</source>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "H8r-Kd-Ho8";</note>
+      </trans-unit>
+      <trans-unit id="JgQ-Bv-WUN.title">
+        <source>About</source>
+        <note>Class = "UINavigationItem"; title = "About"; ObjectID = "JgQ-Bv-WUN";</note>
+      </trans-unit>
+      <trans-unit id="JoV-ul-tnL.text">
+        <source>IBU:</source>
+        <note>Class = "UILabel"; text = "IBU:"; ObjectID = "JoV-ul-tnL";</note>
+      </trans-unit>
+      <trans-unit id="Kaf-hg-VkC.text">
+        <source>Label</source>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "Kaf-hg-VkC";</note>
+      </trans-unit>
+      <trans-unit id="LQm-br-mYZ.title">
+        <source>Nearby</source>
+        <note>Class = "UITabBarItem"; title = "Nearby"; ObjectID = "LQm-br-mYZ";</note>
+      </trans-unit>
+      <trans-unit id="LSN-0P-8yn.text">
+        <source>Country/State:</source>
+        <note>Class = "UILabel"; text = "Country/State:"; ObjectID = "LSN-0P-8yn";</note>
+      </trans-unit>
+      <trans-unit id="OiZ-BO-Z69.title">
+        <source>Back</source>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "OiZ-BO-Z69";</note>
+      </trans-unit>
+      <trans-unit id="Or5-41-csU.text">
+        <source>Address</source>
+        <note>Class = "UILabel"; text = "Address"; ObjectID = "Or5-41-csU";</note>
+      </trans-unit>
+      <trans-unit id="QmD-BV-YB2.text">
+        <source>Beer Name</source>
+        <note>Class = "UILabel"; text = "Beer Name"; ObjectID = "QmD-BV-YB2";</note>
+      </trans-unit>
+      <trans-unit id="RZR-zt-rBv.title">
+        <source>Display Current Location</source>
+        <note>Class = "UIBarButtonItem"; title = "Display Current Location"; ObjectID = "RZR-zt-rBv";</note>
+      </trans-unit>
+      <trans-unit id="XRh-Pa-M0c.text">
+        <source>Note:</source>
+        <note>Class = "UILabel"; text = "Note:"; ObjectID = "XRh-Pa-M0c";</note>
+      </trans-unit>
+      <trans-unit id="ZqW-16-vsh.title">
+        <source>New Log</source>
+        <note>Class = "UINavigationItem"; title = "New Log"; ObjectID = "ZqW-16-vsh";</note>
+      </trans-unit>
+      <trans-unit id="b6f-hc-jjI.text">
+        <source>Brewery:</source>
+        <note>Class = "UILabel"; text = "Brewery:"; ObjectID = "b6f-hc-jjI";</note>
+      </trans-unit>
+      <trans-unit id="bdd-ed-17F.text">
+        <source>Profile:</source>
+        <note>Class = "UILabel"; text = "Profile:"; ObjectID = "bdd-ed-17F";</note>
+      </trans-unit>
+      <trans-unit id="e0a-cx-vS4.text">
+        <source>Score:</source>
+        <note>Class = "UILabel"; text = "Score:"; ObjectID = "e0a-cx-vS4";</note>
+      </trans-unit>
+      <trans-unit id="f9y-2f-4SX.title">
+        <source>Save</source>
+        <note>Class = "UIBarButtonItem"; title = "Save"; ObjectID = "f9y-2f-4SX";</note>
+      </trans-unit>
+      <trans-unit id="fGl-no-ooy.text">
+        <source>Address</source>
+        <note>Class = "UILabel"; text = "Address"; ObjectID = "fGl-no-ooy";</note>
+      </trans-unit>
+      <trans-unit id="mLy-Ob-QZp.title">
+        <source>Log</source>
+        <note>Class = "UITabBarItem"; title = "Log"; ObjectID = "mLy-Ob-QZp";</note>
+      </trans-unit>
+      <trans-unit id="pIN-eV-Swk.title">
+        <source>Back</source>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "pIN-eV-Swk";</note>
+      </trans-unit>
+      <trans-unit id="tvA-dn-uDO.text">
+        <source>TEL</source>
+        <note>Class = "UILabel"; text = "TEL"; ObjectID = "tvA-dn-uDO";</note>
+      </trans-unit>
+      <trans-unit id="vQk-d5-zw2.text">
+        <source>Label</source>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "vQk-d5-zw2";</note>
+      </trans-unit>
+      <trans-unit id="yd3-vh-7b1.text">
+        <source>Licenses</source>
+        <note>Class = "UILabel"; text = "Licenses"; ObjectID = "yd3-vh-7b1";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BeerLog/Info.plist" source-language="en" datatype="plaintext" target-language="ja">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleDisplayName">
+        <source>ビアログ</source>
+      </trans-unit>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BeerLogTests/Info.plist" source-language="en" datatype="plaintext" target-language="ja">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="BeerLogUITests/Info.plist" source-language="en" datatype="plaintext" target-language="ja">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="7.2" build-num="7C68"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
