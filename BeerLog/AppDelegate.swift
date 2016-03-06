@@ -15,6 +15,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+        UITabBar.appearance().tintColor = BeerLogDifinition.TITLEBAR_COLOR
+
         return true
     }
 
