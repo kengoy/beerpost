@@ -48,12 +48,6 @@ class BeerBarListViewController: UIViewController,
         let backButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backButtonItem
         
-        let client = Client(clientID: BeerLogDifinition.FOURSQUARE_API_CLIENT_ID,
-            clientSecret: BeerLogDifinition.FOURSQUARE_API_CLIENT_SECRET,
-            redirectURL: BeerLogDifinition.FOURSQUARE_API_REDIRECT_URL)
-        let configuration = Configuration(client:client)
-        Session.setupSharedSessionWithConfiguration(configuration)
-        
         session = Session.sharedSession()
         
         let bannerView: GADBannerView = GADBannerView(adSize: kGADAdSizeSmartBannerPortrait)
@@ -126,7 +120,8 @@ class BeerBarListViewController: UIViewController,
                         // userInfoが[String: CLLocation]の形をしている
                         if let clloc = userInfo["location"] {
                             // for debug
-                            // print(String("\(clloc.coordinate.latitude)") + "," + String("\(clloc.coordinate.longitude)"))
+                            //print("BeerBarListView : Locaiton")
+                            //print(String("\(clloc.coordinate.latitude)") + "," + String("\(clloc.coordinate.longitude)"))
 
                             self.cl = clloc
                             
@@ -310,7 +305,8 @@ class BeerBarListViewController: UIViewController,
                     }
                 }
                 if let photos = venue["featuredPhotos"] as? JSONParameters! {
-                    if let items = photos["items"] as? [JSONParameters] {
+                    if (photos != nil) { // why do i need to nil-check?
+                        if let items = photos["items"] as? [JSONParameters] {
                         if let item = items.first {
                             let URL = photoURLFromJSONObject(item)
                             if let imageData = session.cachedImageDataForURL(URL)  {
@@ -326,6 +322,7 @@ class BeerBarListViewController: UIViewController,
                                     }
                                 }
                             }
+                        }
                         }
                     }
                 }

@@ -41,6 +41,7 @@
 		C2498DF71C79BD9700B10C7C /* ic_beerpost_180x180.png in Resources */ = {isa = PBXBuildFile; fileRef = C2498DF21C79BD9700B10C7C /* ic_beerpost_180x180.png */; };
 		C2498DF81C79BD9700B10C7C /* ic_beerpost_80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = C2498DF31C79BD9700B10C7C /* ic_beerpost_80x80.png */; };
 		C2498DF91C79BD9700B10C7C /* ic_beerpost_58x58.png in Resources */ = {isa = PBXBuildFile; fileRef = C2498DF41C79BD9700B10C7C /* ic_beerpost_58x58.png */; };
+		C28304891C97CDCB008EF28D /* BeerBarNameListItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28304881C97CDCB008EF28D /* BeerBarNameListItemTableViewCell.swift */; };
 		C28CD9F91C492E3A00D5E13F /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CD9BD1C492E3A00D5E13F /* ActionButton.swift */; };
 		C28CD9FA1C492E3A00D5E13F /* ActionButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CD9BE1C492E3A00D5E13F /* ActionButtonItem.swift */; };
 		C28CDA2F1C49313200D5E13F /* TimelineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C28CDA2E1C49313200D5E13F /* TimelineViewController.swift */; };
@@ -129,6 +130,7 @@
 		C2498DF21C79BD9700B10C7C /* ic_beerpost_180x180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_beerpost_180x180.png; sourceTree = "<group>"; };
 		C2498DF31C79BD9700B10C7C /* ic_beerpost_80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_beerpost_80x80.png; sourceTree = "<group>"; };
 		C2498DF41C79BD9700B10C7C /* ic_beerpost_58x58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_beerpost_58x58.png; sourceTree = "<group>"; };
+		C28304881C97CDCB008EF28D /* BeerBarNameListItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerBarNameListItemTableViewCell.swift; sourceTree = "<group>"; };
 		C28CD9BD1C492E3A00D5E13F /* ActionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		C28CD9BE1C492E3A00D5E13F /* ActionButtonItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionButtonItem.swift; sourceTree = "<group>"; };
 		C28CDA2E1C49313200D5E13F /* TimelineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimelineViewController.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				C28CDA3A1C511B1100D5E13F /* PostViewController.swift */,
+				C28304881C97CDCB008EF28D /* BeerBarNameListItemTableViewCell.swift */,
 			);
 			name = PostView;
 			sourceTree = "<group>";
@@ -568,6 +571,7 @@
 				C28CD9FA1C492E3A00D5E13F /* ActionButtonItem.swift in Sources */,
 				C21676171C6A47E400930543 /* BeerLogDefinition.swift in Sources */,
 				C2353E231C63180100BBDDBF /* CosmosDistrib.swift in Sources */,
+				C28304891C97CDCB008EF28D /* BeerBarNameListItemTableViewCell.swift in Sources */,
 				C28CDA2F1C49313200D5E13F /* TimelineViewController.swift in Sources */,
 				C20AA8F91C30D29A00B00AC4 /* AppDelegate.swift in Sources */,
 				C28CDA321C49337D00D5E13F /* TimelineTableViewCell.swift in Sources */,

@@ -8,8 +8,10 @@
 
 import UIKit
 import RealmSwift
+import CoreLocation
+import QuadratTouch
 
-class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UITextViewDelegate {
+class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var postBeerName: UITextField!
@@ -24,11 +26,20 @@ class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDel
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-        
+    @IBOutlet weak var placeAutoCompleteTable: UITableView!
+    var venueItems : [[String: AnyObject]]?
+    
     var txtActiveView : UITextView?
     var originalOffsetY:CGFloat = 0.0
     
     var beerImage = UIImageView()
+
+    let ls = LocationService()
+    let nc = NSNotificationCenter.defaultCenter()
+    var observers = [NSObjectProtocol]()
+    var cl: CLLocation!
+    var session: Session!
+    var currentTask: Task?
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -36,11 +47,38 @@ class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDel
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.addObserver(self, selector: "handleKeyboardWillShowNotification:", name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.addObserver(self, selector: "handleKeyboardWillHideNotification:", name: UIKeyboardWillHideNotification, object: nil)
+        
+        observers.append(
+            nc.addObserverForName(ls.LSDidUpdateLocationNotification,
+                object: nil,
+                queue: nil,
+                usingBlock: {
+                    notification in
+                    
+                    if let userInfo = notification.userInfo as? [String: CLLocation] {
+                        // userInfoが[String: CLLocation]の形をしている
+                        if let clloc = userInfo["location"] {
+                            // for debug
+                            //print("PostViewController : Location")
+                            //print(String("\(clloc.coordinate.latitude)") + "," + String("\(clloc.coordinate.longitude)"))
+                            
+                            self.cl = clloc
+                            
+                        }
+                    }
+            })
+        )
+        ls.startUpdatingLocation()
     }
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         
+        for observer in observers {
+            nc.removeObserver(observer)
+        }
+        observers = []
+
         let notificationCenter = NSNotificationCenter.defaultCenter()
         notificationCenter.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
         notificationCenter.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
@@ -49,6 +87,8 @@ class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        session = Session.sharedSession()
+
         postImage.layer.cornerRadius = 5.0
         postImage.clipsToBounds = true
         postImage.image = beerImage.image
@@ -60,6 +100,7 @@ class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDel
         postIBU.delegate = self
         postProfile.delegate = self
         postNote.delegate = self
+        postCreatedPlace.delegate = self
         
         makeBorderLineOnTextField()
         
@@ -80,6 +121,12 @@ class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDel
         postABV.inputAccessoryView = accessoryView
         
         postBeerName.becomeFirstResponder()
+        
+        self.placeAutoCompleteTable.delegate = self
+        self.placeAutoCompleteTable.hidden = true;
+        self.placeAutoCompleteTable.estimatedRowHeight = 28
+        self.placeAutoCompleteTable.rowHeight = UITableViewAutomaticDimension
+
     }
     
     private func makeBorderLineOnTextField() {
@@ -239,7 +286,72 @@ class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDel
         postABV.resignFirstResponder()
     }
     
-
+    func textFieldDidBeginEditing(textField: UITextField) {
+        self.placeAutoCompleteTable.hidden = true
+        if textField == postCreatedPlace {
+            // for debug
+            //print("textField : " + textField.text!)
+            
+            if self.cl == nil {
+                return
+            }
+            
+            searchVenues(nil)            
+        }
+    }
+    
+    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        if textField == postCreatedPlace {
+            // for debug
+            //print("textField : " + textField.text!)
+            
+            if self.cl == nil {
+                return true
+            }
+            
+            searchVenues(textField.text!)
+        }
+        return true
+    }
+    
+    private func searchVenues(keyword: String?) {
+        currentTask?.cancel()
+        var parameters = [Parameter.sortByDistance:"1", Parameter.openNow:"1", Parameter.limit:"50",
+            Parameter.categoryId:"56aa371ce4b08b9a8d57356c,4bf58dd8d48988d117941735,4bf58dd8d48988d11d941735,4bf58dd8d48988d11b941735,5370f356bcbc57f1066c94c2"]
+        // Foursqure Category ID : ref https://developer.foursquare.com/categorytree
+        // Beer Bar : 56aa371ce4b08b9a8d57356c
+        // Beer Garden : 4bf58dd8d48988d117941735
+        // Sports Bar : 4bf58dd8d48988d11d941735
+        // Pub : 4bf58dd8d48988d11b941735
+        // Beer Store : 5370f356bcbc57f1066c94c2
+        if keyword != nil {
+            parameters += [Parameter.query:keyword!]
+        }
+        parameters += self.cl.parameters()
+        currentTask = session.venues.search(parameters) {
+            (result) -> Void in
+            if let response = result.response {
+                // for debug
+                //print("search result")
+                //print(response["venues"])
+                if let venues = response["venues"] as? [JSONParameters] {
+                    // for debug
+                    /*
+                    for venue in venues {
+                        if let name = venue["name"] as? String {
+                            print(name)
+                        }
+                    }
+                    */
+                    self.venueItems = venues
+                    self.placeAutoCompleteTable.hidden = false
+                    self.placeAutoCompleteTable.reloadData()
+                }
+            }
+        }
+        currentTask?.start()
+    }
+    
     @IBAction func saveButtonClicked(sender: AnyObject) {
 
         let postDBEntry = BeerLogPost(userId: "", createdPlace: postCreatedPlace.text, postImage: UIImageJPEGRepresentation(postImage.image!, 0.2), postBeerName: postBeerName.text, postBreweryName: postBrewery.text, postBreweryCountry: postCountry.text, postABV: Float( postABV.text!), postIBU: Int(postIBU.text!), postProfile: postProfile.text, postScore: Float(postRate.rating), postNote: postNote.text)
@@ -263,4 +375,49 @@ class PostViewController: UIViewController, UIScrollViewDelegate, UITextFieldDel
 
     }
     
+    
+    // MARK: - UITableViewDelegate
+    func tableView(tableView: UITableView,
+        heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+            return self.placeAutoCompleteTable.estimatedRowHeight
+    }
+    
+    // MARK: - UITableViewDataSource
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            if let venues = venueItems {
+                return venues.count
+            }
+        }
+        
+        // should not come here
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("BeerBarNameListItem", forIndexPath: indexPath)
+                as! BeerBarNameListItemTableViewCell
+            let item = self.venueItems![indexPath.row] as JSONParameters!
+            
+            if let name = item["name"] as? String {
+                cell.beerBarName.text = name
+            }
+            return cell
+        }
+        // should not come here
+        return UITableViewCell()
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if tableView == self.placeAutoCompleteTable {
+            let item = self.venueItems![indexPath.row] as JSONParameters!
+            
+            if let name = item["name"] as? String {
+                postCreatedPlace.text! = name
+            }
+            self.placeAutoCompleteTable.hidden = true;
+            postCreatedPlace.resignFirstResponder()
+        }
+    }
 }

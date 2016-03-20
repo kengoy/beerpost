@@ -8,6 +8,8 @@
 
 import UIKit
 
+import QuadratTouch
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -17,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         UITabBar.appearance().tintColor = BeerLogDifinition.TITLEBAR_COLOR
+
+        let client = Client(clientID: BeerLogDifinition.FOURSQUARE_API_CLIENT_ID,
+            clientSecret: BeerLogDifinition.FOURSQUARE_API_CLIENT_SECRET,
+            redirectURL: BeerLogDifinition.FOURSQUARE_API_REDIRECT_URL)
+        let configuration = Configuration(client:client)
+        Session.setupSharedSessionWithConfiguration(configuration)        
 
         return true
     }
