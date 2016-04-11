@@ -20,6 +20,9 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UIImagePick
     var postImage = UIImage()    
     
     private var newButton: ActionButton!
+    
+    let ud = NSUserDefaults.standardUserDefaults()
+    var isNewLogInserted = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +88,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UIImagePick
                     self.tableView.reloadData()
                     let indexPath = NSIndexPath(forRow: 0, inSection: 0)
                     self.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+                    self.isNewLogInserted = true
                 }
             }
         }
@@ -93,6 +97,38 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UIImagePick
     override func viewWillDisappear(animated: Bool) {
         navigationController?.navigationBarHidden = false
         navigationController?.hidesBarsOnSwipe = false
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if isNewLogInserted == true {
+            if post.count % 3 == 2 && !self.ud.boolForKey("reviewed") {
+                let alertController = UIAlertController(
+                    title: "Cheers!",
+                    message: "Thank you for using BeerPost. Could you review this app?",
+                    preferredStyle: .Alert)
+                
+                let reviewAction = UIAlertAction(title: "Review Now", style: .Default) {
+                    action in
+                    let url = NSURL(string: "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=1086445109")
+                    UIApplication.sharedApplication().openURL(url!)
+                    self.ud.setObject(true, forKey: "reviewed")
+                }
+                let yetAction = UIAlertAction(title: "Not Now", style: .Default) {
+                    action in
+                    self.ud.setObject(false, forKey: "reviewed")
+                }
+                let neverAction = UIAlertAction(title: "NEVER", style: .Cancel) {
+                    action in
+                    self.ud.setObject(true, forKey: "reviewed")
+                }
+                
+                alertController.addAction(reviewAction)
+                alertController.addAction(yetAction)
+                alertController.addAction(neverAction)
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+            isNewLogInserted = false
+        }
     }
     
     /*
