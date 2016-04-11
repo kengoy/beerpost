@@ -207,13 +207,14 @@ class BeerBarListViewController: UIViewController,
 
     private func loadBeerBarFromFoursquare(callback: (NSError?) -> Void) {
         var parameters = [Parameter.venuePhotos:"1", Parameter.sortByDistance:"1", Parameter.openNow:"1", Parameter.limit:"50",
-            Parameter.categoryId:"56aa371ce4b08b9a8d57356c,4bf58dd8d48988d117941735,4bf58dd8d48988d11d941735,4bf58dd8d48988d11b941735,5370f356bcbc57f1066c94c2"]
+            Parameter.categoryId:"56aa371ce4b08b9a8d57356c,4bf58dd8d48988d117941735,4bf58dd8d48988d11d941735,4bf58dd8d48988d11b941735,5370f356bcbc57f1066c94c2,50327c8591d4c4b30a586d5d"]
         // Foursqure Category ID : ref https://developer.foursquare.com/categorytree
         // Beer Bar : 56aa371ce4b08b9a8d57356c
         // Beer Garden : 4bf58dd8d48988d117941735
         // Sports Bar : 4bf58dd8d48988d11d941735
         // Pub : 4bf58dd8d48988d11b941735
         // Beer Store : 5370f356bcbc57f1066c94c2
+        // Brewery: 50327c8591d4c4b30a586d5d
         parameters += cl.parameters()
         let searchTask = self.session.venues.explore(parameters) {
             (result) -> Void in
